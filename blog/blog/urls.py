@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^markdown/', include("django_markdown.urls")),
     url(r'^lista/$', 'blogapp.views.blog_index', name='lista'),
+    url(r'^speaker', 'blogapp.views.blog_speaker', name='palestrantes')
 
 ]
