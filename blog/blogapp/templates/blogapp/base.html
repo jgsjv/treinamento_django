@@ -1,10 +1,12 @@
+{% load staticfiles %}
+{% include "blogapp/navigation.html" %}
 <html>
     <head>
         <title>{% block head_title %}Welcome to my blog{% endblock %}</title>
-
+    <link rel="stylesheet" href="{% static 'blogapp/bootstrap-theme.css' %}">
     </head>
     <body>
-
+        <p>{{ STATIC_URL }}</p>
         <h1>{% block title %} {% endblock %}</h1>
         {% block content %} {% endblock %}
         {% block footer %} {% endblock %}
