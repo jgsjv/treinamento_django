@@ -1,16 +1,18 @@
-{% load staticfiles %}
-{% include "blogapp/navigation.html" %}
 <html>
     <head>
         <title>{% block head_title %}Welcome to my blog{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'blogapp/bootstrap-theme.css' %}">
+        {% block styles %} {% include "styles.html" %} {% endblock styles %}
     </head>
+
     <body>
-        <p>{{ STATIC_URL }}</p>
-        <h1>{% block title %} {% endblock %}</h1>
+        {% block menu %} {% include "menu.html" %} {% endblock menu %}
+
         {% block content %} {% endblock %}
-        {% block footer %} {% endblock %}
+
+        {% block footer %} {% include "footer.html" %} {% endblock %}
+
         {% block tracking %} {% endblock %}
-        {% block scripts %} {% endblock %}
+
+        {% block scripts %} {% include "scripts.html" %} {% endblock %}
     </body>
 </html>
