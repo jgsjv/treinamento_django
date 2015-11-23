@@ -1,0 +1,57 @@
+{% extends "blogapp/base.html" %}
+
+{% load django_markdown %}
+
+{% block content %}
+
+<style>
+    body {
+        padding-top: 100px;
+        height: 100%
+    }
+
+    .blue {
+        background-color: blue;
+    }
+</style>
+
+<p><center><h2>Nossos Palestrantes</h2></center></p>
+<div class = "row"><p></p></div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row"> <!--style="border: 2px solid #000; display:block;"-->
+                <div class="col-lg-2"><img src="" width="90" heinght = "90" alt="Speaker 1" class="img-rounded pull-right"></div>
+                <div class="col-lg-10"><p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row"><p></p></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-2"><img src="" width="90" heinght = "90" alt="Speaker 2" class="img-rounded pull-right"></div>
+                <div class="col-lg-10"><p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row"><p></p></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-2"><img src="" width="90" heinght = "90" alt="Speaker 3" class="img-rounded pull-right"></div>
+                <div class="col-lg-10"><p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+

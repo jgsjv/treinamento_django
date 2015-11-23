@@ -13,13 +13,13 @@ blog_index = BlogIndex.as_view()
 
 class SpeakerIndex(ListView):
     queryset = Speakers.objects.all()
-    template_name = "blogapp/home.html"
+    template_name = "blogapp/speakerList.html"
 
 blog_speaker = SpeakerIndex.as_view()
 
 
 class SponsorIndex(ListView):
     queryset = Sponsors.objects.all()
-    template_name = "blogapp/home.html"
+    template_name = "blogapp/sponsorList.html"
 
 blog_sponsor = SponsorIndex.as_view()
