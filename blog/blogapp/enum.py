@@ -1,6 +1,6 @@
-GOLD = 'G'
-SILVER = 'S'
-BRONZE = 'B'
+GOLD = 1
+SILVER = 2
+BRONZE = 3
 LEVEL_CHOICES = ((GOLD, 'GOLD'),
                  (SILVER, 'SILVER'),
                  (BRONZE, 'BRONZE'))

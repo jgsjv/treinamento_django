@@ -37,11 +37,13 @@ class Speakers(models.Model):
         verbose_name = "Speaker"
         verbose_name_plural = "Speakers"
 
+    def go(self):
+        return self.name.lower()
+
 
 class Sponsors(models.Model):
     brand = models.CharField(max_length=200)
-    level = models.CharField(max_length=1, choices=LEVEL_CHOICES,
-                             default=BRONZE)
+    level = models.IntegerField(choices=LEVEL_CHOICES, default=BRONZE)
     picture = models.ImageField(upload_to='sponsors')
     objects = SponsorManager()
 
@@ -51,3 +53,4 @@ class Sponsors(models.Model):
     class Meta:
         verbose_name = 'Sponsor'
         verbose_name_plural = 'Sponsors'
+        ordering = ['level']

@@ -21,37 +21,35 @@
 <!--Patrocinador Gold-->
 
 <div class="container">
-
     <div class="row">
-        <div class="col-lg-12">
-            <div class="row"> <!--style="border: 2px solid #000; display:block;"-->
-                <div class="col-lg-3 col-lg-offset-3"><img src="" width="90" heinght = "120" alt="Speaker 1" class="img-rounded pull-right"></div>
+
+        {% for sponsor in sponsors %}
+
+            <div>
+                {% if sponsor.level == GOLD %}
+
+                    <div class="col-lg-4"><img src="{{ sponsor.picture.url }}" width="150" heinght = "150" alt="{{ sponsor.brand }}" class="img-rounded pull-right"></div>
+                    <div>{{ sponsor.brand }} </div>
+
+                {% elif sponsor.level == SILVER %}
+
+                    <div class="col-lg-2"><img src="{{ sponsor.picture.url }}" width="150" heinght = "150" alt="{{ sponsor.brand }}" class="img-rounded pull-right"></div>
+                    <div class="col-lg-10">{{ sponsor.brand}} </div>
+                    prata
+
+                {% elif sponsor.level == BRONZE %}
+
+                    <div class="col-lg-2"><img src="{{ sponsor.picture.url }}" width="150" heinght = "150" alt="{{ sponsor.brand }}" class="img-rounded pull-right"></div>
+                    <div class="col-lg-10">{{ sponsor.brand }} </div>
+                    bronze
+
+                {% endif %}
+
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row"><p></p></div>
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="col-lg-2 col-lg-offset-12"><img src="" width="90" heinght = "120" alt="Speaker 2" class="img-rounded pull-right"></div>
-                <div class="col-lg-10"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row"><p></p></div>
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="col-lg-2"><img src="" width="90" heinght = "120" alt="Speaker 3" class="img-rounded pull-right"></div>
-                <div class="col-lg-10"></div>
-            </div>
-        </div>
-    </div>
-
+        {% endfor %}
 </div>
+
 
 {% endblock %}
