@@ -25,31 +25,17 @@
 
         {% for sponsor in sponsors %}
 
-            <div>
                 {% if sponsor.level == GOLD %}
-
-                    <div class="col-lg-4"><img src="{{ sponsor.picture.url }}" width="150" heinght = "150" alt="{{ sponsor.brand }}" class="img-rounded pull-right"></div>
-                    <div>{{ sponsor.brand }} </div>
+                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px" /></div>
 
                 {% elif sponsor.level == SILVER %}
-
-                    <div class="col-lg-2"><img src="{{ sponsor.picture.url }}" width="150" heinght = "150" alt="{{ sponsor.brand }}" class="img-rounded pull-right"></div>
-                    <div class="col-lg-10">{{ sponsor.brand}} </div>
-                    prata
+                    <div class="col-lg-3"><img src="{{ sponsor.picture.url }}" style="max-height:70px" /></div>
 
                 {% elif sponsor.level == BRONZE %}
-
-                    <div class="col-lg-2"><img src="{{ sponsor.picture.url }}" width="150" heinght = "150" alt="{{ sponsor.brand }}" class="img-rounded pull-right"></div>
-                    <div class="col-lg-10">{{ sponsor.brand }} </div>
-                    bronze
+                    <div class="col-lg-3"><img src="{{ sponsor.picture.url }}" style="max-height:55px" /></div>
 
                 {% endif %}
-
-                </div>
-            </div>
-
         {% endfor %}
+    </div>
 </div>
-
-
 {% endblock %}

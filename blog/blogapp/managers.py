@@ -16,6 +16,9 @@ class EntryQuerySet(models.QuerySet):
     def startswith_any_a(self):
         return self.filter(title__startswith='A')
 
+    def last_three(self):
+        return self.objects.filter(publish=True, since=since).order_by('-created')[:3]
+
 
 class SpeakerQuerySet(models.QuerySet):
     pass
@@ -32,6 +35,9 @@ class EntryManager(models.Manager):
 
     def published(self):
         return self.get_queryset().published()
+
+    def last_three(self):
+        return
 
     def startswith_a(self):
         return self.get_queryset().startswith_a()

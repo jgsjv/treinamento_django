@@ -8,6 +8,7 @@ class BlogIndex(ListView):
     queryset = Entry.objects.published()
     template_name = "blogapp/home.html"
     paginate_by = 2
+    context_object_name = "news"
 
 blog_index = BlogIndex.as_view()
 
