@@ -4,9 +4,17 @@ from .models import Entry, Speakers, Sponsors
 from .enum import GOLD, SILVER, BRONZE
 
 
+class NewsIndex(ListView):
+    queryset = Entry.objects.published()
+    template_name = "blogapp/news.html"
+    paginated_by = 4
+
+blog_news = NewsIndex.as_view()
+
+
 class BlogIndex(ListView):
-    #queryset = Entry.objects.published()
-    queryset = Speakers.objects.all()
+    # queryset = Entry.objects.published()
+    # queryset = Speakers.objects.all()
     queryset = Sponsors.objects.all()
     template_name = "blogapp/home.html"
 
