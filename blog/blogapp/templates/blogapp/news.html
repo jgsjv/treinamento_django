@@ -1,0 +1,36 @@
+{% extends 'blogapp/base.html' %}
+
+{% load django_markdown %}
+
+<style>
+    body {
+        padding-top: 100px;
+
+    }
+
+    .blue {
+        background-color: blue;
+    }
+</style>
+
+<p><center><h2>Noticias</h2></center></p>
+<div class = "row"><p></p></div>
+
+{% block content %}
+
+<div class="container">
+
+    {% for new in news %}
+        <div class="row">
+            <div class="col-lg-8">
+            <div class="ceneter-text">
+            {{new.title}}
+            </div>
+            </div>
+            </div>
+            {% endfor %}
+</div>
+
+
+
+{% endblock %}

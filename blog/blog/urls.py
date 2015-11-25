@@ -10,10 +10,10 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^markdown/', include("django_markdown.urls")),
-    url(r'^lista/$', 'blogapp.views.blog_index', name='lista'),
-    url(r'^speaker', 'blogapp.views.blog_speaker', name='palestrantes'),
-    url(r'^sponsor', 'blogapp.views.blog_sponsor', name='patrocinadores'),
-    url(r'^home', 'blogapp.views.blog_index', name='home'),
+    url(r'^news$', 'blogapp.views.blog_index', name='lista'),
+    url(r'^speaker$', 'blogapp.views.blog_speaker', name='palestrantes'),
+    url(r'^sponsor$', 'blogapp.views.blog_sponsor', name='patrocinadores'),
+    url(r'^home$', 'blogapp.views.blog_index', name='home'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -51,7 +51,7 @@
 
    <div class="row">
        <div class="col-lg-12 col-lg-offset-11">
-           <button type="button" class="btn btn-primary" >Mais</button>
+           <a href="{% url 'lista' %}" role="button" class="btn btn-primary" >Mais</a>
        </div>
    </div>
 
@@ -64,14 +64,14 @@
 
 <div class="container">
     <div class="row">
-            {% for speaker in speakers %}
-                <div class="col-lg-12">
-                    <div class="row"> <!--style="border: 2px solid #000; display:block;"-->
-                        <div class="col-lg-2"><img src="{{ speaker.picture.url }}" width="90" heinght = "90" alt="{{ speaker.name }}" class="img-rounded pull-right"></div>
-                        <div class="col-lg-10"><p>{{ speaker.name }} - {{ speaker.go }} Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p></div>
-                    </div>
+        {% for speaker in speakers %}
+            <div class="col-lg-1">
+                <div class="row"> <!--style="border: 2px solid #000; display:block;"-->
+                    <div class="col-lg-2"><img src="{{ speaker.picture.url }}" width="90" heinght = "90" alt="{{ speaker.name }}" class="img-rounded pull-right"></div>
+                    <div class="col-lg-10"><p>{{ speaker.name }} - {{ speaker.go }} Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p></div>
                 </div>
-            {% endfor %}
+            </div>
+        {% endfor %}
     </div>
 </div>
 
@@ -80,48 +80,74 @@
 <div class="row text-center"><h2>Patrocinadores</h2></div>
 <div class = "row text-center"><p>------------------------------------------</p></div>
 
-<div class="container">
+<!--<div class="container">
     <div class="row">
 
-        {% for sponsor in sponsors %}
 
-                {% if sponsor.level == GOLD %}
-                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px" /></div>
 
-                {% elif sponsor.level == SILVER %}
+                {# {% elif sponsor.level == SILVER %} #}
                     <div class="col-lg-3"><img src="{{ sponsor.picture.url }}" style="max-height:70px" /></div>
 
-                {% elif sponsor.level == BRONZE %}
+                {# {% elif sponsor.level == BRONZE %} #}
                     <div class="col-lg-3"><img src="{{ sponsor.picture.url }}" style="max-height:55px" /></div>
 
+                {# {% endif %} #}
+        {#{% endfor %}#}
+    </div>
+</div>-->#}
+
+<!--Patrocinador Gold-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+            {% for sponsor in sponsors %}
+                {% if sponsor.level == GOLD|slice:":1" %}
+                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px" /></div>
                 {% endif %}
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 </div>
 
-<!--Patrocinador Gold--><!--
-
-    <div class="row">
-      <div class="col-lg-4 col-lg-offset-4">
-         <div class="thumbnail">
-         <div class="caption"><h3>Gold1</h3></div>
-         </div>
-      </div>
-    </div>
-
 <!--Patrocinador Silver-->
 
-    <!--<div class="row">
-      <div class="col-lg-3 col-lg-offset-3">
-        <div class="thumbnail"><div class="caption"><h3>Silver1</h3></div></div>
-      </div>
-
-      <div class="col-lg-3">
-        <div class="thumbnail"><div class="caption"><h3>Silver2</h3></div></div>
-      </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-lg-offset-3">
+            {% for sponsor in sponsors|slice:":2" %}
+                {% if sponsor.level == Silver %}
+                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px" /></div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
+</div>
 
 <!--Patrocinador Bronze-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-2">
+            {% for sponsor in sponsors|slice:":2" %}
+                {% if sponsor.level == Bronze %}
+                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px" /></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!--<div class="row">
 

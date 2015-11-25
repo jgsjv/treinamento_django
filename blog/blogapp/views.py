@@ -5,10 +5,17 @@ from .enum import GOLD, SILVER, BRONZE
 
 
 class BlogIndex(ListView):
-    queryset = Entry.objects.published()
+    #queryset = Entry.objects.published()
+    queryset = Speakers.objects.all()
+    queryset = Sponsors.objects.all()
     template_name = "blogapp/home.html"
-    paginate_by = 2
-    context_object_name = "news"
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogIndex, self).get_context_data(**kwargs)
+        context['GOLD'] = GOLD
+        context['SILVER'] = SILVER
+        context['BRONZE'] = BRONZE
+        return context
 
 blog_index = BlogIndex.as_view()
 
