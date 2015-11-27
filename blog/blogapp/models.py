@@ -18,8 +18,8 @@ class Entry(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = "Blog Entry"
-        verbose_name_plural = "Blog Entries"
+        verbose_name = "New"
+        verbose_name_plural = "News"
         ordering = ["-created"]
 
 

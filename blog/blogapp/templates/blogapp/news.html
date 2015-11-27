@@ -2,6 +2,8 @@
 
 {% load django_markdown %}
 
+{% block content %}
+
 <style>
     body {
         padding-top: 100px;
@@ -13,24 +15,41 @@
     }
 </style>
 
-<p><center><h2>Noticias</h2></center></p>
+<p><center><h2>Notícias</h2></center></p>
 <div class = "row"><p></p></div>
-
-{% block content %}
-
 <div class="container">
 
     {% for new in news %}
         <div class="row">
-            <div class="col-lg-8">
-            <div class="ceneter-text">
-            {{new.title}}
+            <div class="col-lg-9">
+                <div>
+                    <div><h1>{{new.title}}</h1></div>
+                    <div>Publicado em {{new.created}}</div>
+                    <div>{{new.body|truncatechars:"700"}}</div>
+                    <div><h6>{{new.slug}}</h6></div>
+                </div>
             </div>
-            </div>
-            </div>
-            {% endfor %}
+            <div class="col-lg-12 col-lg-offset-11"><a href="{% url 'detalhes' new.pk %} " role="button" class="btn btn-primary" >Mais</a></div>
+        </div>
+        <hr></hr>
+    {% endfor %}
+
+    {% if is_paginated %}
+
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <div class="col-lg-8 col-lg-offset-7">
+                        <nav><ul class="pager"><li><a href="/new?page={{ page_obj.previous_page_number }}">Anterior</a></li></ul></nav>
+                    </div>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                    <div class="col-lg-8 col-lg-offset-7">
+                        <nav><ul class="pager"><li><a href="/new?page={{ page_obj.next_page_number }}">Próxima</a></li></ul></nav>
+                    </div>
+                {% endif %}
+            </span>
+    {% endif %}
 </div>
-
-
 
 {% endblock %}

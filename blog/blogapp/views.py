@@ -1,13 +1,25 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Entry, Speakers, Sponsors
 from .enum import GOLD, SILVER, BRONZE
+
+
+class PublicacoesDetalhes(DetailView):
+    model = Entry
+    template_name = "blogapp/publicacoes_detalhes.html"
+
+
+
+
+
+blog_publicacoes_detalhes = PublicacoesDetalhes.as_view()
 
 
 class NewsIndex(ListView):
     queryset = Entry.objects.published()
     template_name = "blogapp/news.html"
-    paginated_by = 4
+    context_object_name = 'news'
+    paginate_by = 3
 
 blog_news = NewsIndex.as_view()
 

@@ -1,0 +1,30 @@
+{% extends 'blogapp/base.html' %}
+
+{% load django_markdown %}
+
+{% block content %}
+
+<style>
+    body {
+        padding-top: 100px;
+
+    }
+
+    .blue {
+        background-color: blue;
+    }
+</style>
+
+
+
+<div class="container">
+    <div class="col-lg-10">
+        <center><h1>{{ object.title}}</h1></center>
+        <hr></hr>
+        <div>{{ object.body }}</div>
+        <hr></hr>
+    </div>
+</div>
+
+
+{% endblock content %}
