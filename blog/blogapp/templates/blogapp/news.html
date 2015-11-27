@@ -34,17 +34,20 @@
         <hr></hr>
     {% endfor %}
 
+
+<!-- AJeitar posicionamento dos botoes-->
+
     {% if is_paginated %}
             <span class="page-links">
                 {% if page_obj.has_previous %}
                     <div class="col-lg-8 col-lg-offset-7">
-                        <nav><ul class="pager"><li><a href="/news?page={{ page_obj.previous_page_number }}">Anterior</a></li></ul></nav>
+                        <a href="/news?page={{ page_obj.previous_page_number }}" role="button" class="btn btn-default" >Anterior</a>
                     </div>
                 {% endif %}
 
                 {% if page_obj.has_next %}
                     <div class="col-lg-8 col-lg-offset-7">
-                        <nav><ul class="pager"><li><a href="/news?page={{ page_obj.next_page_number }}">Próxima</a></li></ul></nav>
+                        <a href="/news?page={{ page_obj.next_page_number }}" role="button" class="btn btn-default">Próxima</a>
                     </div>
                 {% endif %}
             </span>

@@ -21,9 +21,8 @@ blog_news = NewsIndex.as_view()
 
 
 class BlogIndex(ListView):
-    # queryset = Entry.objects.published()
-    # queryset = Speakers.objects.all()
-    queryset = Sponsors.objects.all()
+    queryset = Entry.objects.published()
+    context_object_name = 'entries'
     template_name = "blogapp/home.html"
 
     def get_context_data(self, **kwargs):
@@ -31,6 +30,8 @@ class BlogIndex(ListView):
         context['GOLD'] = GOLD
         context['SILVER'] = SILVER
         context['BRONZE'] = BRONZE
+        context['speakers'] = Speakers.objects.all()
+        context['sponsors'] = Sponsors.objects.all()
         return context
 
 blog_index = BlogIndex.as_view()

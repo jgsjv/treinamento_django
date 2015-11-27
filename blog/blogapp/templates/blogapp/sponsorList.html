@@ -21,9 +21,15 @@
 <!--Patrocinador Gold-->
 
 <div class="container">
-    <div class="row">
 
-        {% for sponsor in sponsors %}
+    {% regroup sponsors by level as sponsor_list %}
+    <ul>
+
+    {% for level in sponsor_list %}
+    <li>{{level.grouper}}</li>
+    <ul>
+    {% for }
+        <div class="row">
 
                 {% if sponsor.level == GOLD %}
                     <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px" /></div>
@@ -35,7 +41,7 @@
                     <div class="col-lg-3"><img src="{{ sponsor.picture.url }}" style="max-height:55px" /></div>
 
                 {% endif %}
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}
