@@ -8,10 +8,6 @@ class PublicacoesDetalhes(DetailView):
     model = Entry
     template_name = "blogapp/publicacoes_detalhes.html"
 
-
-
-
-
 blog_publicacoes_detalhes = PublicacoesDetalhes.as_view()
 
 
@@ -19,7 +15,7 @@ class NewsIndex(ListView):
     queryset = Entry.objects.published()
     template_name = "blogapp/news.html"
     context_object_name = 'news'
-    paginate_by = 3
+    paginate_by = 2
 
 blog_news = NewsIndex.as_view()
 
