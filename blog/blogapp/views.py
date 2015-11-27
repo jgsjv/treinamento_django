@@ -15,7 +15,7 @@ class NewsIndex(ListView):
     queryset = Entry.objects.published()
     template_name = "blogapp/news.html"
     context_object_name = 'news'
-    paginate_by = 2
+    paginate_by = 4
 
 blog_news = NewsIndex.as_view()
 
