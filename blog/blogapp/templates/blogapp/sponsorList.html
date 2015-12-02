@@ -18,30 +18,31 @@
 <p><center><h2>Nossos Patrocinadores</h2></center></p>
 <div class = "row"><p></p></div>
 
-<!--Patrocinador Gold-->
-
 <div class="container">
-
     {% regroup sponsors by level as sponsor_list %}
+
     <ul>
+        {% for level in sponsor_list %}
+            <li>{{level.grouper}}
+                <ul>
+                    {% for item in level.list %}
+                        <li>
+                            <div class="row">
 
-    {% for level in sponsor_list %}
-    <li>{{level.grouper}}</li>
-    <ul>
-    {% for }
-        <div class="row">
+                            {% if item.level == GOLD %}
+                                <div class="col-lg-6"><img src="{{ item.picture.url }}" style="max-height:110px" /></div>
 
-                {% if sponsor.level == GOLD %}
-                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px" /></div>
+                            {% elif item.level == SILVER %}
+                                <div class="col-lg-3"><img src="{{ item.picture.url }}" style="max-height:70px" /></div>
 
-                {% elif sponsor.level == SILVER %}
-                    <div class="col-lg-3"><img src="{{ sponsor.picture.url }}" style="max-height:70px" /></div>
-
-                {% elif sponsor.level == BRONZE %}
-                    <div class="col-lg-3"><img src="{{ sponsor.picture.url }}" style="max-height:55px" /></div>
-
-                {% endif %}
-        </div>
-    {% endfor %}
+                            {% elif item.level == BRONZE %}
+                                <div class="col-lg-3"><img src="{{ item.picture.url }}" style="max-height:55px" /></div>
+                            {% endif %}
+                            </div>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}
