@@ -4,6 +4,7 @@ from .models import Entry, Speakers, Sponsors
 from .enum import GOLD, SILVER, BRONZE
 from .forms import ContatoForm
 from django.http import HttpResponse
+from django.core.mail import send_mail
 
 
 class PublicacoesDetalhes(DetailView):
@@ -71,6 +72,7 @@ def get_name(request):
                 message = form.cleaned_data['message']
                 sender = form.cleaned_data['sender']
                 cc_myself = form.cleaned_data['cc_myself']
+                context_object_name = 'contato_form'
 
                 recipients = ['info@example.com']
                 if cc_myself:
