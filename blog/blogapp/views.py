@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Entry, Speakers, Sponsors
 from .enum import GOLD, SILVER, BRONZE
+from .forms import ContatoForm
+from django.http import HttpResponse
 
 
 class PublicacoesDetalhes(DetailView):
@@ -59,3 +61,18 @@ class SponsorIndex(ListView):
         return context
 
 blog_sponsor = SponsorIndex.as_view()
+
+
+def get_name(request):
+    if request.method == 'POST':
+        form = ContatoForm(request.POST):
+            if form.is_valid():
+                subject = form.cleaned_data['subject']
+                message = form.cleaned_data['message']
+                sender = form.cleaned_data['sender']
+                cc_myself = form.cleaned_data['cc_myself']
+
+    else:
+        form = ContatoForm()
+
+    return render(request, 'name.html', {'form': form})
