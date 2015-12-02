@@ -72,6 +72,13 @@ def get_name(request):
                 sender = form.cleaned_data['sender']
                 cc_myself = form.cleaned_data['cc_myself']
 
+                recipients = ['info@example.com']
+                if cc_myself:
+                    recipients.append(sender)
+
+                send_mail(subject, message, sender, recipients)
+                return HttpResponseRedirect('/thanks/')
+
     else:
         form = ContatoForm()
 
