@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView, TemplateView
 from .models import Entry, Speakers, Sponsors
 from .enum import GOLD, SILVER, BRONZE
-from .forms import ContatoForm
-from django.http import HttpResponse
+from .forms import EventoForm
+from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 
 
@@ -64,24 +64,41 @@ class SponsorIndex(ListView):
 blog_sponsor = SponsorIndex.as_view()
 
 
-def get_name(request):
-    if request.method == 'POST':
-        form = ContatoForm(request.POST):
+class EventoView(FormView):
+    template_name = "blogapp/evento.html"
+    form_class = EventoForm
+    success_url = "blogapp/agradecimento.html"
+
+    def validation():
+        if form.is_valid():
+            subject = form.cleared_data['subject']
+            message = form.cleared_data['message']
+            sender = form.cleared_data['sender']
+
+            recipients = ['info@example.com']
+            if cc_myself:
+                recipients.append(sender)
+
+        send_email(subject, message, sender, recipients)
+        return HttpResponseRedirect("blogapp/agradecimento.html")
+
+    def form_valid(self, form):
+        form.send_email()
+        return super(EventoView, self).form_valid(form)
+
+    def get_post(request):
+        if request.method == 'POST':
+            form = EventoForm(request.POST)
             if form.is_valid():
-                subject = form.cleaned_data['subject']
-                message = form.cleaned_data['message']
-                sender = form.cleaned_data['sender']
-                cc_myself = form.cleaned_data['cc_myself']
-                context_object_name = 'contato_form'
+                return HttpResponseRedirect("blogapp/agradecimento.html")
+        else:
+            form = EventoForm()
+        return render(request, "blogapp/agradecimento.html", {'form': form})
 
-                recipients = ['info@example.com']
-                if cc_myself:
-                    recipients.append(sender)
+blog_evento = EventoView.as_view()
 
-                send_mail(subject, message, sender, recipients)
-                return HttpResponseRedirect('/thanks/')
 
-    else:
-        form = ContatoForm()
+class ThanksView(TemplateView):
+    template_name = "blogapp/agradecimento.html"
 
-    return render(request, 'name.html', {'form': form})
+blog_obrigado = ThanksView.as_view()

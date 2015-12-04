@@ -16,6 +16,8 @@ urlpatterns = [
     url(r'^home$', 'blogapp.views.blog_index', name='home'),
     url(r'^(?P<pk>[\d]+)/$',
         'blogapp.views.blog_publicacoes_detalhes', name='detalhes'),
+    url(r'event$', 'blogapp.views.blog_evento', name='evento'),
+    url(r'^thanks$', 'blogapp.views.blog_obrigado', name='agradecimento')
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

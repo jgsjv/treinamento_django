@@ -1,9 +1,7 @@
 from django import forms
 
 
-class ContatoForm(forms.Form):
-    subject = forms.CharField(max_length=100)
-    message = forms.CharField(widget=forms.Textarea)
+class EventoForm(forms.Form):
+    subject = forms.CharField(label='Assunto', max_length=100)
+    message = forms.CharField(label='Mensagem', widget=forms.Textarea)
     sender = forms.EmailField()
-    cc_myself = forms.BooleanField(required=False)
-
