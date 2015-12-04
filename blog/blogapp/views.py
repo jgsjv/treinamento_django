@@ -69,22 +69,9 @@ class EventoView(FormView):
     form_class = EventoForm
     success_url = "blogapp/agradecimento.html"
 
-    def validation():
-        if form.is_valid():
-            subject = form.cleared_data['subject']
-            message = form.cleared_data['message']
-            sender = form.cleared_data['sender']
-
-            recipients = ['info@example.com']
-            if cc_myself:
-                recipients.append(sender)
-
-        send_email(subject, message, sender, recipients)
-        return HttpResponseRedirect("blogapp/agradecimento.html")
-
-    def form_valid(self, form):
-        form.send_email()
-        return super(EventoView, self).form_valid(form)
+    # def get_context_data(self, **kwargs):
+    #    context = super(EventoView, self).get_context_data(**kwargs)
+    #   context[]
 
     def get_post(request):
         if request.method == 'POST':
