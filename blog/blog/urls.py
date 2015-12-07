@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^(?P<pk>[\d]+)/$',
         'blogapp.views.blog_publicacoes_detalhes', name='detalhes'),
     url(r'event$', 'blogapp.views.blog_evento', name='evento'),
+    url(r'event2$', 'blogapp.forms.criar_speaker', name='evento2'),
     url(r'^thanks$', 'blogapp.views.blog_obrigado', name='agradecimento'),
     url(r'^event', 'blogapp.views.blog_evento', name='evento'),
 

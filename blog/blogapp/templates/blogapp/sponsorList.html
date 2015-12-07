@@ -21,7 +21,7 @@
 <div class="container">
     {% regroup sponsors by level as sponsor_list %}
 
-    <ul>
+    <ul class="unstyled">
         {% for level in sponsor_list %}
             <li>{{level.grouper}}
                 <ul>

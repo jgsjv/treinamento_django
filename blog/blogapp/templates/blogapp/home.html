@@ -65,10 +65,10 @@
 <div class="container">
     <div class="row">
         {% for speaker in speakers %}
-            <div class="col-lg-1">
+            <div class="col-lg-4">
                 <div class="row"> <!--style="border: 2px solid #000; display:block;"-->
-                    <div class="col-lg-4"><img src="{{ speaker.picture.url }}" width="90" heinght = "90" alt="{{ speaker.name }}" class="img-rounded pull-right"></div>
-                    <div class="col-lg-10"><p>{{ speaker.name }} - {{ speaker.go }}</p></div>
+                    <div class="col-lg-4"><img src="{{ speaker.picture.url }}" width="90" heinght = "120" alt="{{ speaker.name }}" class="img-rounded pull-right"></div>
+                    <div class="col-lg-9"><p>{{ speaker.name }}</p></div>
                 </div>
             </div>
         {% endfor %}
@@ -99,10 +99,10 @@
 <!--Patrocinador Gold-->
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 col-lg-offset-4">
+        <div class="col-lg-offset-3">
             {% for sponsor in sponsors %}
                 {% if sponsor.level == GOLD|slice:":1" %}
-                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px" /></div>
+                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px"/></div>
                 {% endif %}
             {% endfor %}
         </div>
@@ -113,10 +113,10 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-3 col-lg-offset-3">
-            {% for sponsor in sponsors|slice:":2" %}
+        <div>
+            {% for sponsor in sponsors%}
                 {% if sponsor.level == Silver %}
-                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px" /></div>
+                    <div class=""><img src="{{ sponsor.picture.url }}" style="max-height:55px"/></div>
                 {% endif %}
             {% endfor %}
         </div>
@@ -130,7 +130,7 @@
         <div class="col-lg-2 col-lg-offset-2">
             {% for sponsor in sponsors|slice:":2" %}
                 {% if sponsor.level == Bronze %}
-                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px" /></div>
+                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px"/></div>
                 {% endif %}
             {% endfor %}
         </div>

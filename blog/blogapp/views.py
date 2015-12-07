@@ -44,7 +44,7 @@ class SpeakerIndex(ListView):
     queryset = Speakers.objects.all()
     template_name = "blogapp/speakerList.html"
     context_object_name = 'speakers'
-    paginate_by = 2
+    paginate_by = 1
 
 blog_speaker = SpeakerIndex.as_view()
 
@@ -68,22 +68,6 @@ class EventoView(FormView):
     template_name = "blogapp/evento.html"
     form_class = EventoForm
     success_url = "thanks"
-
-    def home(request):
-
-        form = EventoForm(request.POST or None)
-        context = {
-            "form": form
-        }
-
-    def get_post(request):
-        if request.method == 'POST':
-            form = EventoForm(request.POST)
-            if form.is_valid():
-                return HttpResponseRedirect("blogapp/agradecimento.html")
-        else:
-            form = EventoForm()
-        return render(request, "blogapp/agradecimento.html", {'form': form})
 
 blog_evento = EventoView.as_view()
 
