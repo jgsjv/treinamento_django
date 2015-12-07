@@ -67,11 +67,14 @@ blog_sponsor = SponsorIndex.as_view()
 class EventoView(FormView):
     template_name = "blogapp/evento.html"
     form_class = EventoForm
-    success_url = "blogapp/agradecimento.html"
+    success_url = "thanks"
 
-    # def get_context_data(self, **kwargs):
-    #    context = super(EventoView, self).get_context_data(**kwargs)
-    #   context[]
+    def home(request):
+
+        form = EventoForm(request.POST or None)
+        context = {
+            "form": form
+        }
 
     def get_post(request):
         if request.method == 'POST':

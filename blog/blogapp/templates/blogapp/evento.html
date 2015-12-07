@@ -16,12 +16,17 @@
 <p><center><h2>Contato</h2></center></p>
 <div class = "row"><p></p></div>
 
-<form action="" method="post">
+<center>
+<form action="" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
 
- {% csrf_token %}
+
+
+<input type="submit" value="Enviar"/>
 </form>
+</center>
 
-{{ contato_evento }}
 
 
 {% endblock %}
