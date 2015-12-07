@@ -21,7 +21,6 @@ class SpeakerModelForm(forms.ModelForm):
 def criar_speaker(request):
     if request.method == 'POST':
         spk = SpeakerModelForm(request.POST, request.FILES)
-        import ipdb; ipdb.set_trace()
         if spk.is_valid():
             spk.save()
             return HttpResponseRedirect("blogapp/agradecimento.html")
