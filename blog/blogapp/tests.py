@@ -6,49 +6,69 @@ from blogapp.models import Entry
 from blogapp.models import Sponsors
 from blogapp.models import Speakers
 from .enum import LEVEL_CHOICES
-from .enum import BRONZE
+from .enum import GOLD, SILVER, BRONZE
+
+# Testes de criacao de models.
 
 
 class EntryTestCase(TestCase):
 
-    def setUp(self):
-        self.entry = Entry.objects.create(
-            title='titulo x',
-            publish=True,
-        )
+    fixtures = ['blogapp']
 
     def test_published_entries(self):
-        self.assertEqual(self.entry.title, 'titulo x')
-        self.assertTrue(self.entry.publish)
-        # import ipdb; ipdb.set_trace()
-        # self.assertEqual(Entry.objects.published())
+        s = Entry.objects.get(pk=1)
+        self.assertEquals(s.title, 'Bicicletas compartilhadas do Projeto Bike PE tem horario estendido aos domingos e feriados')
+        self.assertTrue(s.publish)
 
 
 class SpeakerTestCase(TestCase):
 
-    def setUp(self):
-        self.speaker = Speakers.objects.create(
-            name='palestrante y',
-            ocupation='motivador',
-            subject='titulo longo de palestra',
-            # picture=não sei o que por aqui por enquanto
-            )
+    fixtures = ['blogapp']
 
     def test_speaker_creation(self):
-        self.assertEqual(self.speaker.name, 'palestrante y')
-        self.assertEqual(self.speaker.ocupation, 'motivador')
-        self.assertEqual(self.speaker.subject, 'titulo longo de palestra')
+        t = Speakers.objects.get(pk=1)
+        self.assertEqual(t.name, 'Dennis McField')
+        self.assertEqual(t.ocupation, 'Enterteiner')
+        self.assertEqual(t.subject, 'The show must go on')
 
 
 class SponsorTestCase(TestCase):
 
-    def setUp(self):
-        self.sponsor = Sponsors.objects.create(
-            brand='marca z',
-            level=BRONZE
-            # picture=não sei o que por aqui por enquanto
-            )
+    fixtures = ['blogapp']
 
     def test_sponsor_creation(self):
-        self.assertEqual(self.sponsor.brand, 'marca z')
-        self.assertEqual(self.sponsor.level, BRONZE)
+        u = Sponsors.objects.get(pk=1)
+        self.assertEqual(u.brand, 'Colgate')
+        self.assertEqual(u.level, GOLD)
+
+
+# Testes de views.
+
+class NewsIndexTestCase(TestCase):
+
+    def test_index(self):
+        resp = self.client.get('/news')
+        self.assertEqual(resp.status_code, 200)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Testes de managers.
+
+# Testes de forms.
+
