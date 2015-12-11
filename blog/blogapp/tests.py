@@ -51,6 +51,50 @@ class NewsIndexTestCase(TestCase):
         self.assertEqual(resp.status_code, 200)
 
 
+# Voltar para esse aqui.
+
+# class PublicacoesDetalhesTestCase(TestCase):
+
+#   def test_index(self):
+#       resp = self.client.get('/(?P<pk>[\d]+)')
+#       self.assertEqual(resp.status_code, 200)
+
+
+class BlogIndexTestCase(TestCase):
+
+    def test_index(self):
+        resp = self.client.get('/home')
+        self.assertEqual(resp.status_code, 200)
+
+
+class SpeakerIndexTestCase(TestCase):
+
+    def test_index(self):
+        resp = self.client.get('/speaker')
+        self.assertEqual(resp.status_code, 200)
+
+
+class SponsorIndexTestCase(TestCase):
+
+    def test_index(self):
+        resp = self.client.get('/sponsor')
+        self.assertEqual(resp.status_code, 200)
+
+
+class EventoViewTestCase(TestCase):
+
+    def test_index(self):
+        resp = self.client.get('/event')
+        self.assertEqual(resp.status_code, 200)
+
+
+class ThanksViewTestCase(TestCase):
+
+    def test_index(self):
+        resp = self.client.get('/thanks')
+        self.assertEqual(resp.status_code, 200)
+
+
 
 
 
