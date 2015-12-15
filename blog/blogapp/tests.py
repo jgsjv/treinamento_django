@@ -72,13 +72,16 @@ class NewsIndexTestCase(TestCase):
 
 class PublicacoesDetalhesTestCase(TestCase):
 
-    def test_index(self):
-        for chave, url in lista_de_urls.iteritems():
-            url = reverse('publicacao', args=(publicacao.pk,))
-        url_desejada = 'publicacoes/{0}/detalhes'.format(self.entries)
-        self.assertEqual(url, url_desejada)
-        resp = self.client.get(url)
-        self.assertEqual(resp.status_code, 200)
+    fixtures = ['blogapp']
+
+#    def test_index(self):
+
+#        for chave, url in lista_de_urls.iteritems():
+#            url = reverse('publicacao', args=(publicacao.pk,))
+#        url_desejada = 'publicacoes/{0}/detalhes'.format(self.publicacoes)
+#        self.assertEqual(url, url_desejada)
+#        resp = self.client.get(url)
+#       self.assertEqual(resp.status_code, 200)
 
 
 class BlogIndexTestCase(TestCase):
@@ -90,11 +93,12 @@ class BlogIndexTestCase(TestCase):
             url = reverse('home')
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, 200)
+        self.assertTrue('entries' in resp.context)
 
 
 class SpeakerIndexTestCase(TestCase):
 
-    def test_index(self):
+    def test_speaker_view(self):
         for chave, url in lista_de_urls.iteritems():
             url = reverse('palestrantes')
         resp = self.client.get(url)
@@ -104,7 +108,7 @@ class SpeakerIndexTestCase(TestCase):
 
 class SponsorIndexTestCase(TestCase):
 
-    def test_index(self):
+    def test_sponsor_view(self):
         for chave, url in lista_de_urls.iteritems():
             url = reverse('patrocinadores')
         resp = self.client.get(url)
@@ -114,7 +118,7 @@ class SponsorIndexTestCase(TestCase):
 
 class EventoViewTestCase(TestCase):
 
-    def test_index(self):
+    def test_evento_view(self):
         for chave, url in lista_de_urls.iteritems():
             url = reverse('evento')
         resp = self.client.get(url)
@@ -123,7 +127,7 @@ class EventoViewTestCase(TestCase):
 
 class ThanksViewTestCase(TestCase):
 
-    def test_index(self):
+    def test_thanks_view(self):
         for chave, url in lista_de_urls.iteritems():
             url = reverse('agradecimento')
         resp = self.client.get(url)
@@ -134,10 +138,27 @@ class ThanksViewTestCase(TestCase):
 # Testes de forms.
 
 
-# class EventoFormTestCase(TestCase):
+class EventoFormTestCase(TestCase):
 
-    # def test_good_contact(self):
-    #     post = EventoForm.object.get(pk=1)
-    #    resp = self.client.post('evento', {'subject': Testes, 'message': Comentario ou sugestao, 'sender': jgsjv@cin.ufpe.br})
-    #    self.assertEqual(resp.satus_code, 200)
+    def test_ok_form_creation(self):
+
+        form_data_sucess = {'subject': 'Test', 'message': 'This is a test',
+                            'sender': 'jgsjv@cin.ufpe.br'}
+
+        form = EventoForm(form_data_sucess)
+        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_bound)
+        for chave, url in lista_de_urls.iteritems():
+            url = reverse('evento')
+        resp = self.client.post(url, form_data_sucess)
+        self.assertEqual(resp.status_code, 302)
+
+    def test_bad_form_creation(self):
+
+        form_data_failure = {'subject': 'Test', 'message': '',
+                             'sender': 'ncrn@cin.ufpe.br'}
+
+        formf = EventoForm(form_data_failure)
+        self.assertFalse(formf.is_valid())
+        self.assertTrue(formf.is_bound)
 
