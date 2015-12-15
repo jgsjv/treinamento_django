@@ -162,3 +162,9 @@ class EventoFormTestCase(TestCase):
         self.assertFalse(formf.is_valid())
         self.assertTrue(formf.is_bound)
 
+    def test_is_unbound(self):
+
+        form_data_bound = {'subject': '', 'message': '', 'sender': ''}
+        form = EventoForm(form_data_bound)
+        self.assertFalse(form.is_valid())
+
