@@ -142,29 +142,36 @@ class EventoFormTestCase(TestCase):
 
     def test_ok_form_creation(self):
 
-        form_data_sucess = {'subject': 'Test', 'message': 'This is a test',
-                            'sender': 'jgsjv@cin.ufpe.br'}
+        form_data = {'subject': 'Test', 'message': 'This is a test',
+                     'sender': 'jgsjv@cin.ufpe.br'}
 
-        form = EventoForm(form_data_sucess)
+        form = EventoForm(form_data)
         self.assertTrue(form.is_valid())
         self.assertTrue(form.is_bound)
         for chave, url in lista_de_urls.iteritems():
             url = reverse('evento')
-        resp = self.client.post(url, form_data_sucess)
-        self.assertEqual(resp.status_code, 302)
+
+        if form.is_valid():
+            resp = self.client.post(url, form_data)
+            self.assertEqual(resp.status_code, 302)
+        else:
+            self.assertEqual(resp.status_code, 404)
 
     def test_bad_form_creation(self):
 
-        form_data_failure = {'subject': 'Test', 'message': '',
-                             'sender': 'ncrn@cin.ufpe.br'}
+        form_data = {'subject': 'Test', 'message': '',
+                     'sender': 'ncrn@cin.ufpe.br'}
 
-        formf = EventoForm(form_data_failure)
-        self.assertFalse(formf.is_valid())
-        self.assertTrue(formf.is_bound)
+        form = EventoForm(form_data)
+        self.assertFalse(form.is_valid())
+        self.assertTrue(form.is_bound)
 
     def test_is_unbound(self):
 
-        form_data_bound = {'subject': '', 'message': '', 'sender': ''}
-        form = EventoForm(form_data_bound)
+        form_data = {'subject': '', 'message': '', 'sender': ''}
+        form = EventoForm(form_data)
         self.assertFalse(form.is_valid())
 
+    def test_no_data(self):
+        resp = self.client.post('evento')
+        self.assertEqual(resp.status_code, 200)
