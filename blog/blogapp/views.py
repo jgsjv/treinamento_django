@@ -44,7 +44,7 @@ class SpeakerIndex(ListView):
     queryset = Speakers.objects.all()
     template_name = "blogapp/speakerList.html"
     context_object_name = 'speakers'
-    paginate_by = 1
+    paginate_by = 2
 
 blog_speaker = SpeakerIndex.as_view()
 

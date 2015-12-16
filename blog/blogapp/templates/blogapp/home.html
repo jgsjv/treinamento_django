@@ -64,27 +64,11 @@
 <div class="row text-center"><h2>Patrocinadores</h2></div>
 <div class = "row text-center"><p>------------------------------------------</p></div>
 
-<!--<div class="container">
-    <div class="row">
-
-
-
-                {# {% elif sponsor.level == SILVER %} #}
-                    <div class="col-lg-3"><img src="{{ sponsor.picture.url }}" style="max-height:70px" /></div>
-
-                {# {% elif sponsor.level == BRONZE %} #}
-                    <div class="col-lg-3"><img src="{{ sponsor.picture.url }}" style="max-height:55px" /></div>
-
-                {# {% endif %} #}
-        {#{% endfor %}#}
-    </div>
-</div>-->
-
 <!--Patrocinador Gold-->
 <div class="container">
     <div class="row">
         <div class="col-lg-offset-3">
-            {% for sponsor in sponsors|slice:":1"  %}
+            {% for sponsor in sponsors %}
                 {% if sponsor.level == GOLD %}
                     <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:110px"/></div>
                 {% endif %}
@@ -111,57 +95,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-offset-3">
+        <div class="col-lg-offset-2">
             {% for sponsor in sponsors %}
                 {% if sponsor.level == BRONZE %}
-                    <div class="col-lg-6"><img src="{{ sponsor.picture.url }}" style="max-height:55px"/></div>
+                    <div class="col-lg-3"><img src="{{ sponsor.picture.url }}" style="max-height:55px"/></div>
                 {% endif %}
             {% endfor %}
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--<div class="row">
-
-      <div class="col-lg-2 col-lg-offset-2">
-          <div class="thumbnail">
-            <div class="caption"><h3>Bronze1</h3></div>
-          </div>
-      </div>
-
-      <div class="col-lg-2">
-          <div class="thumbnail">
-            <div class="caption"><h3>Bronze2</h3></div>
-          </div>
-      </div>
-
-      <div class="col-lg-2">
-          <div class="thumbnail">
-            <div class="caption"><h3>Bronze3</h3></div>
-          </div>
-      </div>
-
-      <div class="col-lg-2">
-          <div class="thumbnail">
-            <div class="caption"><h3>Bronze4</h3></div>
-          </div>
-      </div>
-    </div>
-</div>
-
--->
-
 {% endblock %}
