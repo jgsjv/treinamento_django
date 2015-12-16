@@ -171,7 +171,3 @@ class EventoFormTestCase(TestCase):
         form_data = {'subject': '', 'message': '', 'sender': ''}
         form = EventoForm(form_data)
         self.assertFalse(form.is_valid())
-
-    def test_no_data(self):
-        resp = self.client.post('evento')
-        self.assertEqual(resp.status_code, 200)

@@ -11,7 +11,7 @@ from django_markdown.admin import MarkdownModelAdmin
 class EntryAdmin(MarkdownModelAdmin):
     list_display = ("title", "created")
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ("publish",)
+    list_display = ("title", "publish", )
     list_filter = ['publish']
 
 
