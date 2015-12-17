@@ -133,7 +133,6 @@ class ThanksViewTestCase(TestCase):
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, 200)
 
-# Testes de managers.
 
 # Testes de forms.
 

@@ -29,7 +29,7 @@
                     <div><h6>{{new.slug}}</h6></div>
                 </div>
             </div>
-            <div class="col-lg-12 col-lg-offset-11"><a href="{% url 'detalhes' new.pk %} " role="button" class="btn btn-primary" >Mais</a></div>
+            <div class="col-lg-12"><a href="{% url 'detalhes' new.pk %} " role="button" class="btn btn-primary" >Mais</a></div>
         </div>
         <hr></hr>
     {% endfor %}
@@ -40,13 +40,13 @@
     {% if is_paginated %}
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <div class="col-lg-8 col-lg-offset-7">
+                    <div class="col-lg-1 col-lg-offset-7">
                         <a href="/news?page={{ page_obj.previous_page_number }}" role="button" class="btn btn-default" >Anterior</a>
                     </div>
                 {% endif %}
 
                 {% if page_obj.has_next %}
-                    <div class="col-lg-8 col-lg-offset-7">
+                    <div class="col-lg-1">
                         <a href="/news?page={{ page_obj.next_page_number }}" role="button" class="btn btn-default">Próxima</a>
                     </div>
                 {% endif %}
